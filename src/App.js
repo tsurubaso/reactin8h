@@ -113,8 +113,44 @@ setAge(age+1);};
 }
 */
 /* notes3
+function App() {
+  const [textColor, setTextColor] = useState("black");
+
+  return (
+    <div className="App">
+      <button
+        onClick={() => {
+          setTextColor(textColor==="black"?"red":"black")
+        }}
+      >
+        Show/Hide
+      </button>
+       <h1 style={{color:textColor}}>Hi my name is Taro</h1>
+    </div>
+  );
+}
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const increase=() =>{setCount(count+1);};
+  const decrease=() =>{setCount(count-1);};
+  const setToZero=() =>{setCount(0);};
+
+  return (
+    <div className="App">
+      <button onClick={increase}>Increase</button>
+      <button onClick={decrease}>Decrease</button>
+      <button onClick={setToZero}>Set to Zero</button>
+      {count}
+      
+    </div>
+  );
+}
 
 */
+/* notes4
+ */
 //you can also transform App.css to App.module.css and then
 //you can use import styles from blabla..this ios an object
 // className={styles.name} and so on
@@ -123,19 +159,47 @@ setAge(age+1);};
 // looping in an array, add the key to avoid the worning
 
 function App() {
-  const [showText, setShowText] = useState(true);
+  const [todoList, setTodoList] = useState([]);
+  const [newTask, setNewTask] = useState("");
 
+  const handelChange = (event) => {
+    setNewTask(event.target.value);
+  };
+
+  const addTask = () => {
+    const newTodoList = [...todoList, newTask];
+    setTodoList(newTodoList);
+  };
+
+  const deleteTask = (taskName) => {
+    const newTodoList = todoList.filter((task) => {
+      return task !== taskName
+      // if (task === taskName) {
+      //   return false;
+      // } else {
+      //   return true;
+      // }
+    });
+    setTodoList(newTodoList); 
+  };
   return (
     <div className="App">
-      <button
-        onClick={() => {
-          setShowText(!showText);
-          console.log(showText)
-        }}
-      >
-        Show/Hide
-      </button>
-      {showText && <h1>Hi my name is Taro</h1>}
+      <div className="addTask">
+        <input onChange={handelChange} />
+        <button onClick={addTask}>Add Task</button>
+      </div>
+      <div className="list">
+        {todoList.map((task) => {
+          return (
+            <div>
+              <h1>{task}</h1>{" "}
+              <button onClick={() => deleteTask(task)}>X</button>{" "}
+            </div>
+          );
+        })}
+
+        
+      </div>
     </div>
   );
 }
