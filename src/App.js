@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { Task } from "./Task";
 
 /* notes 1
 import {User} from "./User.js";
@@ -186,15 +187,10 @@ taskName: newTask
       </div>
       <div className="list">
         {todoList.map((task) => {
-          return (
-            <div>
-              <h1>{task.taskName}</h1>{" "}
-              <button onClick={() => deleteTask(task.id)}>X</button>{" "}
-            </div>
-          );
+          return <Task taskName={task.taskName} id={task.id} deleteTask={deleteTask}/>
         })}
 
-        
+         
       </div>
     </div>
   );
