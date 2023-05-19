@@ -1,4 +1,6 @@
 import "./App.css";
+import Axios from "axios";
+import {useState, useEffect} from "react";
 
 
 /* notes 1
@@ -222,6 +224,16 @@ export default App;
     };
   },[]) //et si tu rajoute dans [] c<est quand c<est updated
 */
+/* notes 6
+  fetch("https://catfact.ninja/fact")
+.then((response)=>response.json())
+.then((data)=>{
+
+console.log(data);
+
+})
+*/
+
 
 //you can also transform App.css to App.module.css and then
 //you can use import styles from blabla..this ios an object
@@ -233,11 +245,27 @@ export default App;
 //useState UseEffect 
 
 function App() {
+
+  const [catFact,setCatFact]=useState("");
+
+  const fetchCatFact=()=>{
+    Axios.get("https://catfact.ninja/fact").then((response)=>{
+      setCatFact(response.data.fact);
+    });
+    
+  }
+useEffect(()=>{
+  fetchCatFact();
+  
+},[]);
+
+
+
  
 return  (
   <div className="App">
-<button>Generate cat fact</button>
-<p></p>
+<button onClick={fetchCatFact}>Generate cat fact</button>
+<p>{catFact}</p>
 
 
   </div>
