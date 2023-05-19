@@ -1,6 +1,5 @@
 import "./App.css";
-import { useState } from "react";
-import { Task } from "./Task";
+
 
 /* notes 1
 import {User} from "./User.js";
@@ -151,13 +150,6 @@ function App() {
 
 */
 /* notes4
- */
-//you can also transform App.css to App.module.css and then
-//you can use import styles from blabla..this ios an object
-// className={styles.name} and so on
-//&& if something is true then do this
-//avoid haifun "-" background-color>>>>backgroundColor
-// looping in an array, add the key to avoid the worning
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -216,6 +208,42 @@ if(task.id===id){return {...task,completed:true} }else{
       </div>
     </div>
   );
+}
+
+export default App;
+
+ */
+/* notes 5
+  useEffect(()=>{
+
+    console.log("Component Mounted");
+    return ()=>{
+      console.log("Component Unmounted");
+    };
+  },[]) //et si tu rajoute dans [] c<est quand c<est updated
+*/
+
+//you can also transform App.css to App.module.css and then
+//you can use import styles from blabla..this ios an object
+// className={styles.name} and so on
+//&& if something is true then do this
+//avoid haifun "-" background-color>>>>backgroundColor
+// looping in an array, add the key to avoid the worning
+//mounting updating unmounting
+//useState UseEffect 
+
+function App() {
+ 
+return  (
+  <div className="App">
+<button>Generate cat fact</button>
+<p></p>
+
+
+  </div>
+);
+  
+
 }
 
 export default App;
